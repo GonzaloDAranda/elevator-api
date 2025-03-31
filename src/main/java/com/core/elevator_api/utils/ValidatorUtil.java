@@ -24,6 +24,10 @@ public class ValidatorUtil {
   }
 
   public static void validateCallFloors(List<ElevatorCall> elevatorCalls) {
-    elevatorCalls.removeIf(call -> Objects.isNull(call.getCurrentFloor()) || Objects.isNull(call.getDestinationFloor()));
+    elevatorCalls.removeIf(call -> {
+      boolean hasNoFloorInfo = Objects.isNull(call.getCurrentFloor()) || Objects.isNull(call.getDestinationFloor());
+      boolean hasNoMovement = call.getCurrentFloor().equals(call.getDestinationFloor());
+      return hasNoFloorInfo || hasNoMovement;
+    });
   }
 }
