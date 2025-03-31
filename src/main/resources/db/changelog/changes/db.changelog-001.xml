@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    
+    <changeSet id="1" author="Gonzalo">
+        <createTable tableName="floor">
+            <column name="id" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true" unique="true" primaryKeyName="floor_pk"/>
+            </column>
+            <column name="number" type="INTEGER">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="type" type="VARCHAR(20)"/>
+            <column name="access_level" type="VARCHAR(20)"/>
+            <column name="created_at" type="java.sql.Types.TIMESTAMP"/>
+            <column name="last_updated_at" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Gonzalo">
+        <createTable tableName="elevator">
+            <column name="id" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true" unique="true" primaryKeyName="elevator_pk"/>
+            </column>
+            <column name="type" type="VARCHAR(20)"/>
+            <column name="status" type="VARCHAR"/>
+            <column name="current_floor" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_supported_weight" type="INTEGER">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="created_at" type="java.sql.Types.TIMESTAMP"/>
+            <column name="last_updated_at" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="Gonzalo">
+        <createTable tableName="person">
+            <column name="id" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true" unique="true" primaryKeyName="person_pk"/>
+            </column>
+            <column name="name" type="VARCHAR"/>
+            <column name="age" type="NUMERIC"/>
+            <column name="phone" type="VARCHAR">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="role" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="java.sql.Types.TIMESTAMP"/>
+            <column name="last_updated_at" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="Gonzalo">
+        <createTable tableName="keycard">
+            <column name="id" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true" unique="true" primaryKeyName="keycard_pk"/>
+            </column>
+            <column name="owner_id" type="VARCHAR">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="clearance_level_id" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="java.sql.Types.TIMESTAMP"/>
+            <column name="last_updated_at" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="Gonzalo">
+        <createTable tableName="clearance_level">
+            <column name="id" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true" unique="true" primaryKeyName="clearance_level_pk"/>
+            </column>
+            <column name="level" type="VARCHAR">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="authorized_special_floor_id" type="VARCHAR"/>
+            <column name="created_at" type="java.sql.Types.TIMESTAMP"/>
+            <column name="last_updated_at" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="Gonzalo">
+        <createTable tableName="incident">
+            <column name="id" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true" unique="true" primaryKeyName="incident_pk"/>
+            </column>
+            <column name="type" type="VARCHAR">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR"/>
+            <column name="elevator_id" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="floor_id" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="java.sql.Types.TIMESTAMP"/>
+            <column name="created_at" type="java.sql.Types.TIMESTAMP"/>
+            <column name="last_updated_at" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7" author="Gonzalo">
+        <createTable tableName="restricted_access">
+            <column name="id" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true" unique="true" primaryKeyName="restricted_access_pk"/>
+            </column>
+            <column name="floor_id" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="keycard_id" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="person_id" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="java.sql.Types.TIMESTAMP"/>
+            <column name="created_at" type="java.sql.Types.TIMESTAMP"/>
+            <column name="last_updated_at" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="8" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="keycard_owner_fk" foreignKeyTableName="person"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="keycard" constraintName="keycard_owner_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="person" validate="true"/>
+    </changeSet>
+
+    <changeSet id="11" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="clearance_level_fk" foreignKeyTableName="clearance_level"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="clearance_level_id" baseTableName="keycard" constraintName="clearance_level_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="clearance_level" validate="true"/>
+    </changeSet>
+
+    <changeSet id="12" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="authorized_special_floor_fk" foreignKeyTableName="floor"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="authorized_special_floor_id" baseTableName="clearance_level" constraintName="authorized_special_floor_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="floor" validate="true"/>
+    </changeSet>
+
+    <changeSet id="13" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="incident_elevator_fk" foreignKeyTableName="incident"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="elevator_id" baseTableName="incident" constraintName="incident_elevator_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="elevator" validate="true"/>
+    </changeSet>
+
+    <changeSet id="14" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="incident_floor_fk" foreignKeyTableName="incident"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="floor_id" baseTableName="incident" constraintName="incident_floor_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="floor" validate="true"/>
+    </changeSet>
+
+    <changeSet id="15" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="restricted_access_floor_fk" foreignKeyTableName="restricted_access"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="floor_id" baseTableName="restricted_access" constraintName="restricted_access_floor_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="floor" validate="true"/>
+    </changeSet>
+
+    <changeSet id="16" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="restricted_access_keycard_fk" foreignKeyTableName="restricted_access"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="keycard_id" baseTableName="restricted_access" constraintName="restricted_access_keycard_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="keycard" validate="true"/>
+    </changeSet>
+
+    <changeSet id="17" author="Gonzalo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="restricted_access_person_fk" foreignKeyTableName="restricted_access"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="person_id" baseTableName="restricted_access" constraintName="restricted_access_person_fk" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="person" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

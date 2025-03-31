@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  db:
+    container_name: elevator-api-persistence
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: 'building'
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'test'
+    ports:
+      - 5433:5432
+    expose:
+      - 5432

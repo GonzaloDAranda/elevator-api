@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: elevator-api
+    description: Elevator management system API
+    author: Gonzalo Aranda
+    version: 1.0
+  profiles:
+    active: local

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet id="18" author="Gonzalo" labels="floor-data-population">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="floor"/>
+        </preConditions>
+        <sql>
+            INSERT INTO floor (id, number, type, access_level, created_at, last_updated_at)
+            VALUES ('476eb149-a6e1-4209-96ce-b6f3641b02bb', -1, 'BASEMENT', 'RESTRICTED', now()::timestamptz, null),
+            (gen_random_uuid(), 0, 'HALL', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 1, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 2, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 3, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 4, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 5, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 6, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 7, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 8, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 9, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 10, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 11, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 12, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 13, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 14, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 15, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 16, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 17, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 18, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 19, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 20, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 21, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 22, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 23, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 24, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 25, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 26, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 27, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 28, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 29, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 30, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 31, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 32, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 33, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 34, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 35, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 36, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 37, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 38, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 39, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 40, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 41, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 42, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 43, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 44, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 45, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 46, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 47, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            (gen_random_uuid(), 48, 'REGULAR', 'PUBLIC', now()::timestamptz, null),
+            ('75141b43-25c3-4a1b-86a4-4172881c8c46', 49, 'REGULAR', 'RESTRICTED', now()::timestamptz, null);
+        </sql>
+    </changeSet>
+
+    <changeSet id="19" author="Gonzalo" labels="elevator-data-population">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="elevator"/>
+        </preConditions>
+        <sql>
+            INSERT INTO elevator (id, type, status, current_floor, max_supported_weight, created_at, last_updated_at)
+            VALUES (gen_random_uuid(), 'PUBLIC', 'FUNCTIONAL', 0, 1000, now()::timestamptz, null),
+            (gen_random_uuid(), 'FREIGHT', 'FUNCTIONAL', 0, 3000, now()::timestamptz, null);
+        </sql>
+    </changeSet>
+
+    <changeSet id="20" author="Gonzalo" labels="person-data-population">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="person"/>
+        </preConditions>
+        <sql>
+            INSERT INTO person (id, name, age, phone, email, role, created_at, last_updated_at)
+            VALUES ('b0933be4-ae90-4038-acb7-5112102188a5', 'Mark Flex', 25, 1123456789, 'mark.flex@gmail.com', 'TENANT', now()::timestamptz, null),
+            ('40cc8724-2265-4e1e-83fe-c38a2911eed7', 'Hiroyuki Sawano', 48, 1190784567, 'sawano.hiroyuki@gmail.com', 'TENANT', now()::timestamptz, null),
+            ('63944efc-27ec-4f8d-b889-40b6d7c6eefc', 'Joaquin Piedra', 40, 1144557788, 'piedra.joaquin@gmail.com', 'MANAGER', now()::timestamptz, null),
+            ('e9a24e15-7200-4155-8339-0c89cf849d36', 'Carlos Gutierrez', 45, 1100893245, 'cgutierres.technico@gmail.com', 'TECHNICIAN', now()::timestamptz, null),
+            ('567971fc-88ea-40e6-bcfa-c90cfd38e7fb', 'John Cena', 50, 1123227890, 'john.cena@gmail.com', 'TENANT', now()::timestamptz, null),
+            ('684fb564-33e2-48ed-ac2b-bc5fc9b26eb8', 'Pablo Hernandez', 28, 1100003456, 'phernadez@gmail.com', 'TECHNICIAN', now()::timestamptz, null),
+            ('3e70c716-3f50-460e-bd03-3281b0ce9eb9', 'Hernan Cattaneo', 60, 1156783490, 'hcattaneo@gmail.com', 'TENANT', now()::timestamptz, null),
+            ('6560f8f8-5978-475b-a449-0f22fb79ebf4', 'Martin Rodriguez', 21, 1178456790, 'm.rodriguez@gmail.com', 'TENANT', now()::timestamptz, null),
+            ('a6ba5c4d-d634-4739-af40-d34f92f24c7c', 'Mei Zhu', 27, 1134224455, 'theMeiLi@gmail.com', 'TENANT', now()::timestamptz, null),
+            ('ea534fe9-73c9-47b7-9aae-a61b73869305', 'Raul Gonzalez', 70, 1199005678, 'r.gonzalez@gmail.com', 'TENANT', now()::timestamptz, null),
+            ('dfee2f67-a787-47c6-8a8d-f02aea1417c3', 'Julieta Diaz', 30, 1178334567, 'juli.diaz@gmail.com', 'TENANT', now()::timestamptz, null);
+        </sql>
+    </changeSet>
+
+    <changeSet id="21" author="Gonzalo" labels="clearance-level-data-population">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="clearance_level"/>
+        </preConditions>
+        <sql>
+            INSERT INTO clearance_level (id, level, authorized_special_floor_id, created_at, last_updated_at)
+            VALUES ('1abf409f-c2b0-4719-8168-723e25d003d2', 'STANDARD', null, now()::timestamptz, null),
+            ('552a9379-d7d8-4e82-9f1c-f4b073df99c0', 'BASEMENT', '476eb149-a6e1-4209-96ce-b6f3641b02bb', now()::timestamptz, null),
+            ('ed855f6f-f55f-4d12-a9a1-ad8ff249f2c4', 'TOP_FLOOR', '75141b43-25c3-4a1b-86a4-4172881c8c46', now()::timestamptz, null),
+            ('dcfb2699-e8b7-4867-843b-6dfacd629ee4', 'UNLIMITED', null, now()::timestamptz, null);
+        </sql>
+    </changeSet>
+
+    <changeSet id="22" author="Gonzalo" labels="keycard-data-population">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="keycard"/>
+        </preConditions>
+        <sql>
+            INSERT INTO keycard (id, owner_id, clearance_level_id, created_at, last_updated_at)
+            VALUES (gen_random_uuid(), 'b0933be4-ae90-4038-acb7-5112102188a5', '1abf409f-c2b0-4719-8168-723e25d003d2', now()::timestamptz, null),
+            (gen_random_uuid(), '40cc8724-2265-4e1e-83fe-c38a2911eed7', '1abf409f-c2b0-4719-8168-723e25d003d2', now()::timestamptz, null),
+            (gen_random_uuid(), '63944efc-27ec-4f8d-b889-40b6d7c6eefc', 'dcfb2699-e8b7-4867-843b-6dfacd629ee4', now()::timestamptz, null),
+            (gen_random_uuid(), 'e9a24e15-7200-4155-8339-0c89cf849d36', 'dcfb2699-e8b7-4867-843b-6dfacd629ee4', now()::timestamptz, null),
+            (gen_random_uuid(), '567971fc-88ea-40e6-bcfa-c90cfd38e7fb', 'ed855f6f-f55f-4d12-a9a1-ad8ff249f2c4', now()::timestamptz, null),
+            (gen_random_uuid(), '684fb564-33e2-48ed-ac2b-bc5fc9b26eb8', '552a9379-d7d8-4e82-9f1c-f4b073df99c0', now()::timestamptz, null),
+            (gen_random_uuid(), '3e70c716-3f50-460e-bd03-3281b0ce9eb9', 'ed855f6f-f55f-4d12-a9a1-ad8ff249f2c4', now()::timestamptz, null),
+            (gen_random_uuid(), '6560f8f8-5978-475b-a449-0f22fb79ebf4', '1abf409f-c2b0-4719-8168-723e25d003d2', now()::timestamptz, null),
+            (gen_random_uuid(), 'a6ba5c4d-d634-4739-af40-d34f92f24c7c', 'ed855f6f-f55f-4d12-a9a1-ad8ff249f2c4', now()::timestamptz, null),
+            (gen_random_uuid(), 'ea534fe9-73c9-47b7-9aae-a61b73869305', '1abf409f-c2b0-4719-8168-723e25d003d2', now()::timestamptz, null),
+            (gen_random_uuid(), 'dfee2f67-a787-47c6-8a8d-f02aea1417c3', '1abf409f-c2b0-4719-8168-723e25d003d2', now()::timestamptz, null);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
