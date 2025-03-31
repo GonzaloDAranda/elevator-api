@@ -1,0 +1,52 @@
+{
+  "elevatorCalls": [
+    {
+      "weight": 80,
+      "keycardId": "2f642213-e6ee-4e24-a2a3-eeed623215a2",
+      "currentFloor": 0,
+      "destinationFloor": 1
+    },
+    {
+      "weight": 120,
+      "keycardId": "",
+      "currentFloor": 5,
+      "destinationFloor": 2
+    },
+    {
+      "weight": 70,
+      "keycardId": "db3627d2-9a61-41bc-8e67-38fe5d838dc8",
+      "currentFloor": 10,
+      "destinationFloor": -1
+    },
+    {
+      "weight": 120,
+      "keycardId": "",
+      "currentFloor": 12,
+      "destinationFloor": 4
+    },
+    {
+      "weight": 70,
+      "keycardId": "",
+      "currentFloor": 3,
+      "destinationFloor": 5
+    },
+    {
+      "weight": 120,
+      "keycardId": "",
+      "currentFloor": 4,
+      "destinationFloor": 7
+    },
+    {
+      "weight": 80,
+      "keycardId": "f6509748-d92a-4bf2-83ea-1eba2b44aa01",
+      "currentFloor": 49,
+      "destinationFloor":15
+    },
+    {
+      "weight": 120,
+      "keycardId": "f6509748-d92a-4bf2-83ea-1eba2b44aa01",
+      "currentFloor": 17,
+      "destinationFloor": 30
+    }
+  ]
+}

@@ -1,6 +1,10 @@
 ## elevator-api
 Elevator Service Api to manage elevator requests.
 
+## Version: V1.0
+
+## Description
+
 It manages a public and freight elevator separately, processes the requests and validates the access to restricted floors.
 It's also responsible for calculating the elevator trajectory.
 
