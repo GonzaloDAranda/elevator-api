@@ -62,14 +62,7 @@ public class KeycardAuthServiceImplementation implements KeycardAuthService {
         if (Strings.isBlank(call.getPersonId())) {
           return denyAccess(call, accessDeniedRequests, requestId);
         }
-        try {
-          String role = getPerson(call, requestId).getRole();
-          return authorizedRoles.contains(role) ? grantAccess(call, restrictedAccessGranted, requestId)
-            : denyAccess(call, accessDeniedRequests, requestId);
-        } catch (MissingDataException ex) {
-          log.error("Person not found for personId: {}, requestId: {}", call.getPersonId(), requestId);
-          return false;
-        }
+        return checkPersonAuthorization(call, authorizedRoles, accessDeniedRequests, restrictedAccessGranted, requestId);
       }).toList()
     );
   }
@@ -92,6 +85,19 @@ public class KeycardAuthServiceImplementation implements KeycardAuthService {
     } catch (MissingDataException ex) {
       log.error("Keycard not found for keycardId: {}, requestId: {}", call.getKeycardId(), requestId);
       return denyAccess(call, accessDeniedRequests, requestId);
+    }
+  }
+
+  private boolean checkPersonAuthorization(ElevatorCallDto call, Set<String> authorizedRoles,
+                                           List<ElevatorCallDto> accessDeniedRequests,
+                                           List<ElevatorCallDto> restrictedAccessGranted, String requestId) {
+    try {
+      String role = getPerson(call, requestId).getRole();
+      return authorizedRoles.contains(role) ? grantAccess(call, restrictedAccessGranted, requestId)
+        : denyAccess(call, accessDeniedRequests, requestId);
+    } catch (MissingDataException ex) {
+      log.error("Person not found for personId: {}, requestId: {}", call.getPersonId(), requestId);
+      return false;
     }
   }
 
