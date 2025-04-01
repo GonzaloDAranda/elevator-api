@@ -26,7 +26,7 @@ It's also responsible for calculating the elevator trajectory.
 - Once the database image is running you can simply run the project main class in you ide of preference.
 - At the first startup the liquibase script will generate the needed tables and populate them will initial data.
 - With the program running you can use the provided postman collection to test the different endpoints.
-- Note: The local profile will run as default and uses port 9085 to run the service.
+- Note: The local profile will run as default and uses port 8080 to run the service.
 
 ## DB connection
 - The docker image will generate the db automatically
