@@ -1,7 +1,6 @@
 package com.core.elevator_api.service;
 
 import com.core.elevator_api.api.exception.ErrorProcessingDataException;
-import com.core.elevator_api.api.exception.MissingDataException;
 import com.core.elevator_api.api.model.Elevator;
 import com.core.elevator_api.api.model.Floor;
 import com.core.elevator_api.api.repository.ElevatorRepository;
