@@ -96,13 +96,15 @@ public class KeycardAuthServiceImplementation implements KeycardAuthService {
   }
 
   private boolean denyAccess(ElevatorCallDto call, List<ElevatorCallDto> accessDeniedRequests, String requestId) {
-    log.info("Access denied for elevator call with currentFloor: {}, destinationFloor: {} with keycardId: {}, requestId: {}",
-      call.getCurrentFloor(), call.getDestinationFloor(), call.getKeycardId(), requestId);
+    log.info("Access denied for elevator call with currentFloor: {}, destinationFloor: {}, requestId: {}",
+      call.getCurrentFloor(), call.getDestinationFloor(), requestId);
     accessDeniedRequests.add(call);
     return false;
   }
 
   private boolean grantAccess(ElevatorCallDto call, List<ElevatorCallDto> restrictedAccessGranted, String requestId) {
+    log.info("Access granted for elevator call with currentFloor: {}, destinationFloor: {}, requestId: {}",
+      call.getCurrentFloor(), call.getDestinationFloor(), requestId);
     restrictedAccessGranted.add(call);
     return true;
   }
