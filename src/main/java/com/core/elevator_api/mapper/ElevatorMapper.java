@@ -15,7 +15,7 @@ public interface ElevatorMapper {
 
   @BeanMapping(nullValuePropertyMappingStrategy =
     NullValuePropertyMappingStrategy.IGNORE)
-  List<ElevatorCallDto> mapElevatorCallRequest(List<ElevatorCall> elevatorCalls);
+  List<ElevatorCallDto> mapElevatorCalls(List<ElevatorCall> elevatorCalls);
 
   @BeanMapping(nullValuePropertyMappingStrategy =
     NullValuePropertyMappingStrategy.IGNORE)

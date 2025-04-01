@@ -85,7 +85,7 @@ public class ElevatorServiceImplementation implements ElevatorService {
       try {
         trajectory = processElevatorCalls(authorizedElevatorCalls, elevatorDto, requestId);
       } catch (MissingDataException | ElevatorMaxWeightExceededException ex) {
-        throw new ErrorProcessingDataException(ex.getMessage(), ex.getCause());
+        throw new ErrorProcessingDataException(ex.getMessage());
       }
     }
     return ElevatorCallResponse.builder()

@@ -62,14 +62,7 @@ public class KeycardAuthServiceImplementation implements KeycardAuthService {
         if (Strings.isBlank(call.getPersonId())) {
           return denyAccess(call, accessDeniedRequests, requestId);
         }
-        try {
-          String role = getPerson(call, requestId).getRole();
-          return authorizedRoles.contains(role) ? grantAccess(call, restrictedAccessGranted, requestId)
-            : denyAccess(call, accessDeniedRequests, requestId);
-        } catch (MissingDataException ex) {
-          log.error("Person not found for personId: {}, requestId: {}", call.getPersonId(), requestId);
-          return false;
-        }
+        return checkPersonAuthorization(call, authorizedRoles, accessDeniedRequests, restrictedAccessGranted, requestId);
       }).toList()
     );
   }
@@ -95,14 +88,29 @@ public class KeycardAuthServiceImplementation implements KeycardAuthService {
     }
   }
 
+  private boolean checkPersonAuthorization(ElevatorCallDto call, Set<String> authorizedRoles,
+                                           List<ElevatorCallDto> accessDeniedRequests,
+                                           List<ElevatorCallDto> restrictedAccessGranted, String requestId) {
+    try {
+      String role = getPerson(call, requestId).getRole();
+      return authorizedRoles.contains(role) ? grantAccess(call, restrictedAccessGranted, requestId)
+        : denyAccess(call, accessDeniedRequests, requestId);
+    } catch (MissingDataException ex) {
+      log.error("Person not found for personId: {}, requestId: {}", call.getPersonId(), requestId);
+      return false;
+    }
+  }
+
   private boolean denyAccess(ElevatorCallDto call, List<ElevatorCallDto> accessDeniedRequests, String requestId) {
-    log.info("Access denied for elevator call with currentFloor: {}, destinationFloor: {} with keycardId: {}, requestId: {}",
-      call.getCurrentFloor(), call.getDestinationFloor(), call.getKeycardId(), requestId);
+    log.info("Access denied for elevator call with currentFloor: {}, destinationFloor: {}, requestId: {}",
+      call.getCurrentFloor(), call.getDestinationFloor(), requestId);
     accessDeniedRequests.add(call);
     return false;
   }
 
   private boolean grantAccess(ElevatorCallDto call, List<ElevatorCallDto> restrictedAccessGranted, String requestId) {
+    log.info("Access granted for elevator call with currentFloor: {}, destinationFloor: {}, requestId: {}",
+      call.getCurrentFloor(), call.getDestinationFloor(), requestId);
     restrictedAccessGranted.add(call);
     return true;
   }

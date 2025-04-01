@@ -43,7 +43,7 @@ public class ElevatorController {
                                                                  @RequestParam(value = "requestId") String requestId) {
     log.info("Calling the public elevator, requestId: {}", requestId);
     ValidatorUtil.validateElevatorCallRequest(request, requestId);
-    List<ElevatorCallDto> elevatorCalls = elevatorMapper.mapElevatorCallRequest(request.getElevatorCalls());
+    List<ElevatorCallDto> elevatorCalls = elevatorMapper.mapElevatorCalls(request.getElevatorCalls());
     ElevatorCallResponse response = elevatorService.callPublicElevator(elevatorCalls, requestId);
     return ResponseEntity.ok(response);
   }
@@ -55,7 +55,7 @@ public class ElevatorController {
                                                                   @RequestParam(value = "requestId") String requestId) {
     log.info("Calling the freight elevator, requestId: {}", requestId);
     ValidatorUtil.validateElevatorCallRequest(request, requestId);
-    List<ElevatorCallDto> elevatorCalls = elevatorMapper.mapElevatorCallRequest(request.getElevatorCalls());
+    List<ElevatorCallDto> elevatorCalls = elevatorMapper.mapElevatorCalls(request.getElevatorCalls());
     ElevatorCallResponse response = elevatorService.callFreightElevator(elevatorCalls, requestId);
     return ResponseEntity.ok(response);
   }

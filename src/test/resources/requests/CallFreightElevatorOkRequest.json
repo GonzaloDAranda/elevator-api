@@ -1,0 +1,28 @@
+{
+  "elevatorCalls": [
+    {
+      "weight": 80,
+      "personId": "684fb564-33e2-48ed-ac2b-bc5fc9b26eb8",
+      "currentFloor": 0,
+      "destinationFloor": 1
+    },
+    {
+      "weight": 120,
+      "personId": "",
+      "currentFloor": 5,
+      "destinationFloor": 2
+    },
+    {
+      "weight": 70,
+      "personId": "63944efc-27ec-4f8d-b889-40b6d7c6eefc",
+      "currentFloor": 10,
+      "destinationFloor": -1
+    },
+    {
+      "weight": 120,
+      "personId": "",
+      "currentFloor": 12,
+      "destinationFloor": 4
+    }
+  ]
+}
