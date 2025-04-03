@@ -25,8 +25,15 @@ It's also responsible for calculating the elevator trajectory.
 - The previous step will generate a PostgreSLQ db docker image, which the program will connect automatically.
 - Once the database image is running you can simply run the project main class in you ide of preference.
 - At the first startup the liquibase script will generate the needed tables and populate them will initial data.
-- With the program running you can use the provided postman collection to test the different endpoints.
 - Note: The local profile will run as default and uses port 8080 to run the service.
+
+## Testing the service
+
+- With the program running you can use the provided postman collection to test the different endpoints.
+- Alternatively you can use the swagger-ui to to test it. Here's the swagger path:
+
+```localhost:8080/elevator-service/swagger-ui/index.html```
+
 
 ## DB connection
 - The docker image will generate the db automatically
